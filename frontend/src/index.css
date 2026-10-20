@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ---- Design tokens: dark "control room" default, light via data-theme ---- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #080f1c;
+  --surface: #0f1829;
+  --surface-2: #15213a;
+  --border: rgba(255, 255, 255, 0.08);
+  --ink: #e8eefc;
+  --ink-2: #a9b6d0;
+  --muted: #6f7d99;
+  --grid: #1d2a44;
+  --axis: #2b3a58;
+
+  --series-1: #3987e5; /* blue   - observed / conservative */
+  --series-2: #d95926; /* orange - forecast / recommended  */
+  --series-3: #199e70; /* aqua   - aggressive / outflow    */
+  --band: rgba(217, 89, 38, 0.18);
+  --water-top: #4a9af0;
+  --water-bottom: #1b4f97;
+
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --accent: #5cc8ff;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page: #f3f6fb;
+  --surface: #ffffff;
+  --surface-2: #eef2f8;
+  --border: rgba(11, 23, 48, 0.1);
+  --ink: #0b1730;
+  --ink-2: #44506a;
+  --muted: #7a859b;
+  --grid: #e3e8f0;
+  --axis: #c3cad6;
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --band: rgba(235, 104, 52, 0.16);
+  --water-top: #5ba7f2;
+  --water-bottom: #2a78d6;
+  --accent: #0b84d6;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-s1: var(--series-1);
+  --color-s2: var(--series-2);
+  --color-s3: var(--series-3);
+  --color-good: var(--good);
+  --color-warning: var(--warning);
+  --color-serious: var(--serious);
+  --color-critical: var(--critical);
+  --color-accent: var(--accent);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, color-mix(in srgb, var(--series-1) 14%, transparent), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--series-3) 10%, transparent), transparent 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.card {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -18px rgba(0, 0, 0, 0.5);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Range slider */
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--series-1) 0%, var(--series-1) var(--pct, 0%), var(--grid) var(--pct, 0%));
+  outline: none;
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 5px solid var(--series-1);
+  cursor: grab;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--series-1) 25%, transparent);
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 5px solid var(--series-1);
+  cursor: grab;
+}
+
+input[type="date"],
+select {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: var(--muted);
+  font-size: 12px;
+}
+.recharts-surface:focus,
+.recharts-wrapper:focus,
+.recharts-sector:focus {
+  outline: none;
+}
+
+@keyframes wave {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

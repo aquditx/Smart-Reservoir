@@ -1,0 +1,45 @@
+{
+  "reservoir": "K.R.Sagara Dam",
+  "forecast_horizon_days": 3,
+  "data_window": "1994-04-16 to 2019-11-04",
+  "train_rows": 7467,
+  "test_rows": 1867,
+  "best_model": "random_forest",
+  "metrics": {
+    "random_forest": {
+      "rmse": 8900.361893297108,
+      "mae": 2971.806017508495,
+      "r2": 0.44949943470186016,
+      "log_rmse": 1.0643594121313813
+    }
+  },
+  "interval_coverage_80pct_target": 67.4,
+  "notes": [
+    "Inflow used directly from the dataset (Inflow (Cusecs) column) -- not derived via water balance.",
+    "Storage represented via Gross Capacity (TMC), the most complete storage-related column.",
+    "Training window restricted to dates where catchment rainfall data exists (~1994-2019); reservoir data outside this window (1990-93, 2020-2026) exists but has no rainfall to feature-engineer from.",
+    "Both raw-scale and log-scale RMSE reported because inflow is heavily right-skewed (mostly low flow, with monsoon flood spikes exceeding 1 lakh cusecs per the KRS O&M manual) -- raw RMSE is dominated by a small number of extreme flood days."
+  ],
+  "hyperparameters": {
+    "random_forest": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "criterion": "squared_error",
+      "max_depth": 8,
+      "max_features": 1.0,
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 5,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 300,
+      "n_jobs": -1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    }
+  }
+}

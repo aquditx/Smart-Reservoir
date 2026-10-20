@@ -1,0 +1,18 @@
+{
+  "reservoir": "Srisailam",
+  "horizon_days": 3,
+  "unit": "mcm per day",
+  "window": "2019-09-12 to 2025-03-31",
+  "train_rows": 1546,
+  "test_rows": 387,
+  "rmse": 53.11737418152496,
+  "mae": 26.053408337567834,
+  "r2": 0.629165877369277,
+  "r2_without_rainfall": 0.7261331586447393,
+  "notes": [
+    "Inflow reconstructed from storage rise (no release data); falls set to 0.",
+    "Storage > 7000 mcm treated as bad entries.",
+    "Missing rainfall day = 0 mm.",
+    "Rainfall added no skill: R2 is higher without rainfall columns."
+  ]
+}

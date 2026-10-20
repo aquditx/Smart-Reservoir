@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/SADHANA/AppData/Local/Temp/**)",
+      "Bash(python -I -)",
+      "PowerShell(winget install --id OpenJS.NodeJS.LTS -e --accept-source-agreements --accept-package-agreements --silent)",
+      "PowerShell(python -m venv backend\\\\.venv)",
+      "PowerShell(backend\\\\.venv\\\\Scripts\\\\python.exe -m pip install --quiet --upgrade pip)",
+      "PowerShell(backend\\\\.venv\\\\Scripts\\\\python.exe -m pip install --quiet fastapi \"uvicorn[standard]\" pandas numpy pytest httpx)",
+      "PowerShell(backend\\\\.venv\\\\Scripts\\\\python.exe -c \"import pandas, fastapi, numpy; print\\(pandas.__version__, fastapi.__version__, numpy.__version__\\)\")"
+    ]
+  }
+}
